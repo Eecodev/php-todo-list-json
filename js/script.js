@@ -3,32 +3,32 @@ const {createApp} = Vue;
 createApp({
     data(){
         return{
-            todos: [
-                {
-                    text: 'Select playwrights for next show',
-                    done: true,
-                    id: 1
-                },
-                {
-                    text: 'Cast actors',
-                    done: false,
-                    id: 2
-                },
-                {
-                    text: 'Decide whether the show should be site-specific or presented in a traditional theatre setting',
-                    done: false,
-                    id: 3
-                },
-                {
-                    text: 'Schedule rehearsals',
-                    done: true,
-                    id: 4
-                }
-            ],
+            apiUrl: 'server.php',
+            todoList: [],
         }
        
     },
     methods:{
+        readList(){
+            axios
+              .get(this.apiUrl)
+              .then((response) => {
+                  // handle success
+                  //console.log(response.data);
+                  this.todoList = response.data;
+                })
+                .catch((error) => {
+                  // handle error
+                  console.log(error);
+                })
+                .finally(() => {
+                  // always executed
+                });
+      
+          },
+    },
+    mounted() {
+        this.readList();
     }
 
 
