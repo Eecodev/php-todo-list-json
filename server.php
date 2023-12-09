@@ -8,18 +8,20 @@ $filecontent = file_get_contents("todo-list.json");
 // decodifico la stringa in un array php
 $list = json_decode($filecontent, true);
 
-if(isset($_POST['task'])){
+if(isset($_POST['addtask'])){
     $newtask = 
     [
-        'text'=> $_POST['task'],
+        'text'=> $_POST['addtask'],
         'done'=> false
     ];
     array_push($list, $newtask);
     file_put_contents('todo-list.json', json_encode($list));
 }
 
-if(isset($_POST['updatetask'])){
-    
+if(isset($_POST['deletetask'])){
+    $index = $_POST['deletetask'];
+    array_splice($list, $index,1);
+    file_put_contents('todo-list.json', json_encode($list));
 }
 //var_dump($list);
 

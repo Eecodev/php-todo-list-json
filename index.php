@@ -23,7 +23,9 @@
                             <div class="col-12">
                                 <h1 class="display-1">Todo List</h1>
                                 <ul class="list-group list-group-flush border border-1 rounded">
-                                    <li class="list-group-item ">item</li>
+                                    <li v-for="(task, index) in todoList" :key="index" class="list-group-item ">
+                                        {{task.text}} <span @click="deleteTask(index)">x</span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -34,11 +36,11 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Inserisci elemento..."
-                                        aria-label="Inserisci nuovo elemento per la lista"
+                                    <input type="text" class="form-control" placeholder="Add new list item..."
+                                        aria-label="Add new list item"
                                         aria-describedby="button-add">
                                     <button class="btn btn-outline-warning" type="button"
-                                        id="button-add">Inserisci</button>
+                                        id="button-add">Add</button>
                                 </div>
                             </div>
                         </div>
