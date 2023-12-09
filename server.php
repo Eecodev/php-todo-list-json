@@ -17,6 +17,10 @@ if(isset($_POST['task'])){
     array_push($list, $newtask);
     file_put_contents('todo-list.json', json_encode($list));
 }
+
+if(isset($_POST['updatetask'])){
+    
+}
 //var_dump($list);
 
 
